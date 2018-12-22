@@ -26,4 +26,15 @@
     <!-- 能支持springmvc更高级的一些功能，JSR303校验，快捷的ajax...映射动态请求 -->
     <mvc:annotation-driven/>
 
+    <!-- 静态资源访问 -->
+    <!--如果webapp下你新建了文件夹，想访问里面的静态资源，那么就要在这配置一下-->
+    <mvc:resources location="/static/images/" mapping="/images/**"/>
+    <mvc:resources location="/static/css/" mapping="/css/**"/>
+    <mvc:resources location="/static/js/" mapping="/js/**"/>
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+    </mvc:interceptors>
 </beans>

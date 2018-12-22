@@ -1,4 +1,3 @@
-package java;
 
 import com.jiao.bean.Department;
 import com.jiao.bean.DepartmentExample;
