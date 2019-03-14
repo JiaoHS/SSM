@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+             xmlns:beans="http://www.springframework.org/schema/beans">
 
     <!--SpringMVC的配置文件，包含网站跳转逻辑的控制，配置  context:component-scan业务逻辑组件只扫描控制器-->
     <context:component-scan base-package="com.jiao" use-default-filters="false">
@@ -37,4 +38,11 @@
         <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
     </mvc:interceptors>
-</beans>
+
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="defaultEncoding" value="UTF-8"/>
+        <!-- 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+        <beans:property name="maxUploadSize" value="524288000"/>
+    </beans:bean>
+</beans:beans>

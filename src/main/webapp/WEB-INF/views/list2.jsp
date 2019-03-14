@@ -513,7 +513,7 @@
             show_validate_msg("#email_update_input", "success", "");
         }
 
-        //2、发送ajax请求保存更新的员工数据
+        //2、发送ajax请求保存更新的员工数据  或者POST    data:$("#empUpdateModal form").serialize()+"_method=PUT",
         $.ajax({
             url:"${APP_PATH}/emp/"+$(this).attr("edit-id"),
             type:"PUT",
